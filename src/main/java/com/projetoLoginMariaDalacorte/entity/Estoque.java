@@ -5,6 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -16,27 +18,22 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table (name = "produtos")
-public class Produtos {
+@Table(name = "estoque")
+public class Estoque {
 	@Id
-	@GeneratedValue (strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@NotBlank
 	@Column
-	private String descricao;
-	
-	@NotBlank
-	@Column
-	private String nome;
-	
+	private String localizacao;
+
 	@NotNull
 	@Column
-	private double preco;
-	
-	@NotBlank
-	@Column
-	private String url;
+	private int quantidade;
 
+	@ManyToOne
+	@JoinColumn(name = "id_produto")
+	private Produtos produtos;
 
 }

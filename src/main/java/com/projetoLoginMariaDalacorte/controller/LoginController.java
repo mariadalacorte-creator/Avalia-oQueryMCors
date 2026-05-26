@@ -49,7 +49,7 @@ private final LoginService loginService;
 	
 	@PostMapping("/auth")
 	public ResponseEntity <Login> authenticate (@RequestBody Login loginDetails){
-		Login authenticatedUser = loginService.authenticate (loginDetails.getName(), loginDetails.getPassword());
+		Login authenticatedUser = loginService.authenticate (loginDetails.getUsername(), loginDetails.getPassword());
 		
 		if (authenticatedUser !=null) {
 			authenticatedUser.setPassword(null);

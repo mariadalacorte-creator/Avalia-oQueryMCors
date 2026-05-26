@@ -41,10 +41,11 @@ public class ProdutoService {
 	
 	public boolean deletarProdutos (Long id) {
 		Optional <Produtos> exeProdutos = produtoRepository.findById(id);
-		if (exeProdutos.isEmpty()) {
+		if (exeProdutos.isPresent()) {
 			produtoRepository.deleteById(id);
 			return true;
-		}return false;
+		}
+		return false;
 	}
 
 }
